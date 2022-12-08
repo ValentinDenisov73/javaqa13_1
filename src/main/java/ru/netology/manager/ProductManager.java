@@ -12,15 +12,8 @@ public class ProductManager {
         this.repo = repo;
     }
 
-    private Product[] items = new Product[0];
-
-    public void add(Product item) {
-        int length = items.length + 1;
-        Product[] tmp = new Product[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+    public void add(Product product) {
+        repo.add(product);
     }
 
     public Product[] searchBy(String text) {
@@ -29,7 +22,7 @@ public class ProductManager {
             if (matches(product, text)) {
                 Product[] tmp = new Product[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
-                tmp[tmp.length - 1] = product;
+                tmp[result.length] = product;
                 result = tmp;
             }
         }
@@ -37,22 +30,9 @@ public class ProductManager {
     }
 
     public boolean matches(Product product, String search) {
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            if (book.getName().contains(search)) {
-                return true;
-            }
-            return book.getAuthor().contains(search);
-        }
-        if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getName().contains(search)) {
-                return true;
-            }
-            return smartphone.getProducer().contains(search);
-        }
-        return false;
+        return product.getName().contains(search);
     }
 }
+
 
 

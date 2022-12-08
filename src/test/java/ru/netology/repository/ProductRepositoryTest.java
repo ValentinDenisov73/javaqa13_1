@@ -18,10 +18,10 @@ public class ProductRepositoryTest {
 
     @BeforeEach
     public void SetUp() {
-        repo.save(first);
-        repo.save(second);
-        repo.save(third);
-        repo.save(fourth);
+        repo.add(first);
+        repo.add(second);
+        repo.add(third);
+        repo.add(fourth);
     }
 
     @Test
