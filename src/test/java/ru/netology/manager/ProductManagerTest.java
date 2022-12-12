@@ -44,4 +44,13 @@ public class ProductManagerTest {
 
     }
 
+    @Test
+    void shouldNotSearch() {
+
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy("Book3");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
 }
